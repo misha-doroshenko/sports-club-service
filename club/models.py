@@ -6,6 +6,13 @@ import datetime
 
 class Sport(models.Model):
     name = models.CharField(max_length=30, unique=True)
+    description = models.TextField(null=True, blank=True)
+    sport_avatar = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to="sports_avatars",
+        default="default.png"
+    )
 
     def __str__(self):
         return self.name
@@ -16,10 +23,10 @@ class SportsClub(models.Model):
     address = models.CharField(max_length=50)
     city = models.CharField(max_length=20)
     swimming_pool = models.BooleanField()
-    club_logo = models.ImageField(
+    club_avatar = models.ImageField(
         null=True,
         blank=True,
-        upload_to="clubs_logos",
+        upload_to="clubs_avatars",
         default="default.png"
     )
 
