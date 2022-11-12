@@ -25,3 +25,4 @@ def index(request):
 
 class SportListView(generic.ListView):
     model = Sport
+    paginate_by = 8
