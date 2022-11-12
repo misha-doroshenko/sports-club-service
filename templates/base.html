@@ -32,6 +32,9 @@
 <body class="{% block body_class %}{% endblock body_class %}">
     {% include "includes/navigation.html" %}
     {% block content %}{% endblock content %}
+    {% block pagination %}
+      {% include "includes/pagination.html" %}
+    {% endblock %}
 
   <!-- Specific JS goes HERE -->
   {% block javascripts %}{% endblock javascripts %}
