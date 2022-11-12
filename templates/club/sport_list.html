@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block body_class %} blog-author bg-gray-100 {% endblock body_class %}
+
+{% block content %}
+  {% if sport_list %}
+    <section class="py-3">
+    <div class="container pt-7">
+      <div class="row">
+        <div class="col-lg-6">
+          <h3 class="mb-5">Check my latest blogposts</h3>
+        </div>
+      </div>
+    <div class="row">
+      {% for sport in sport_list %}
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-plain card-blog">
+              <div class="card-image border-radius-lg position-relative">
+                <a href="javascript:;">
+                  <img class="w-100 border-radius-lg move-on-hover shadow" src="{{ sport.sport_avatar.url }}">
+                </a>
+              </div>
+              <div class="card-body px-0">
+                <h5>
+                  <a href="javascript:;" class="text-dark font-weight-bold">Rover raised $65 million</a>
+                </h5>
+                <p>
+                  Finding temporary housing for your dog should be as easy as
+                  renting an Airbnb. That’s the idea behind Rover ...
+                </p>
+                <a href="javascript:;" class="text-info icon-move-right">Read More
+                  <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+       </div>
+     </div>
+  </section>
+
+  {% else %}
+    <h1>There are no networks</h1>
+  {% endif %}
+{% endblock %}
