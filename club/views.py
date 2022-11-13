@@ -56,3 +56,8 @@ class TrainerListView(generic.ListView):
     model = Trainer
     queryset = Trainer.objects.select_related("sport")
     paginate_by = 8
+
+
+class TrainerDetailView(generic.DetailView):
+    model = Trainer
+    queryset = Trainer.objects.select_related("sport", "sports_club")
