@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from club.models import Trainer, Workout, SportsClub, Sport
+from club.models import Trainer, SportsClub, Sport
 
 
 def index(request):
