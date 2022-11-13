@@ -33,7 +33,7 @@
                 <div class="row">
                   <div class="col-md-12 text-center">
                     <input type="submit" value="Submit" class="btn bg-gradient-primary mt-3 mb-0">
-                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{% url "club:sport-detail" pk=sport.id%}">Cancel</a>
+                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
                   </div>
                 </div>
               </div>

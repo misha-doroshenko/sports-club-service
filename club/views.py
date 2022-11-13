@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from club.forms import SportForm
 from club.models import Trainer, SportsClub, Sport
 
 
@@ -30,3 +32,21 @@ class SportListView(generic.ListView):
 
 class SportDetailView(generic.DetailView):
     model = Sport
+    queryset = Sport.objects.all().prefetch_related("trainers", "workouts")
+
+
+class SportCreateView(generic.CreateView):
+    model = Sport
+    form_class = SportForm
+    success_url = reverse_lazy("club:sport-list")
+
+
+class SportUpdateView(generic.UpdateView):
+    model = Sport
+    form_class = SportForm
+    success_url = reverse_lazy("club:sport-list")
+
+
+class SportDeleteView(generic.DeleteView):
+    model = Sport
+    success_url = reverse_lazy("club:sport-list")

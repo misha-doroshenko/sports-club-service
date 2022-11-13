@@ -7,8 +7,11 @@
     <section class="py-3">
     <div class="container pt-7">
       <div class="row">
-        <div class="col-lg-6">
-          <h3 class="mb-5">Sport List</h3>
+        <div>
+          <h3>
+            Sport List
+            <a class="btn bg-gradient-primary float-end" href="{% url "club:sport-create" %}">Create</a>
+          </h3>
         </div>
       </div>
     <div class="row">
@@ -17,7 +20,7 @@
             <div class="card card-plain card-blog">
               <div class="card-image border-radius-lg position-relative">
                 <a href="{% url "club:sport-detail" pk=sport.id %}">
-                  <img class="border-radius-lg move-on-hover shadow" src="{{ sport.sport_avatar.url }}" style="height: 275px; width: 275px; object-fit:cover;">
+                  <img class="border-radius-lg move-on-hover shadow" src="{{ sport.sport_avatar.url }}" style="height: 300px; width: 300px; object-fit:cover;">
                 </a>
               </div>
               <div class="card-body px-0">
