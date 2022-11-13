@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from club.forms import SportForm
+from club.forms import SportForm, TrainerUpdateForm
 from club.models import Trainer, SportsClub, Sport
 
 
@@ -61,3 +61,14 @@ class TrainerListView(generic.ListView):
 class TrainerDetailView(generic.DetailView):
     model = Trainer
     queryset = Trainer.objects.select_related("sport", "sports_club")
+
+
+class TrainerUpdateView(generic.UpdateView):
+    model = Trainer
+    form_class = TrainerUpdateForm
+    success_url = reverse_lazy("club:trainer-list")
+
+    def form_invalid(self, form):
+        context = self.get_context_data(form=form)
+        context.update({"my_message": "Something went wrong"})
+        return self.render_to_response(context)

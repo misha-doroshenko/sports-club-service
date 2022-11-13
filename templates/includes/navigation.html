@@ -14,15 +14,21 @@
               <span class="navbar-toggler-bar bar3"></span>
             </span>
           </button>
-          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
-            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100 justify-content-center">
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 d-flex" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100 list-inline mx-auto justify-content-center">
               <li class="nav-item">
-                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer">
+                <a href="{% url "club:sport-list" %}" class="nav-link cursor-pointer">
                   Sports
                   <img src="../../static/assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
                 </a>
               <li class="nav-item">
-                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer">
+                <a href="{% url "club:trainer-list" %}" class="nav-link cursor-pointer">
+                  Trainers
+                  <img src="../../static/assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link cursor-pointer">
                   Workouts
                   <img src="../../static/assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
                 </a>
