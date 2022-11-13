@@ -50,3 +50,9 @@ class SportUpdateView(generic.UpdateView):
 class SportDeleteView(generic.DeleteView):
     model = Sport
     success_url = reverse_lazy("club:sport-list")
+
+
+class TrainerListView(generic.ListView):
+    model = Trainer
+    queryset = Trainer.objects.select_related("sport")
+    paginate_by = 8

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block body_class %} blog-author bg-gray-100 {% endblock body_class %}
+
+{% block content %}
+  {% if trainer_list %}
+    <section class="py-3">
+    <div class="container pt-7">
+      <div class="row">
+        <div>
+          <h3>
+            Trainer List
+            <a class="btn bg-gradient-primary float-end" href="#">Create</a>
+          </h3>
+        </div>
+      </div>
+    <div class="row">
+      {% for trainer in trainer_list %}
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-plain card-blog">
+              <div class="card-image border-radius-lg position-relative">
+                <a href="#">
+                  <img class="border-radius-lg move-on-hover shadow" src="{{ trainer.trainer_avatar.url }}" style="height: 300px; width: 300px; object-fit:cover;">
+                </a>
+              </div>
+              <div class="card-body px-0">
+                <h5>
+                  {{ trainer.first_name }}
+                  {{ trainer.last_name }}
+                </h5>
+                <p>
+                  Sport: {{ trainer.sport.name }}
+                  <br>
+                  Experience: {{ trainer.experience }} year{{ trainer.experience|pluralize }}
+                </p>
+                <a href="#" class="text-info icon-move-right">Read More
+                  <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+       </div>
+     </div>
+  </section>
+  {% else %}
+    <h1>There are no trainers</h1>
+  {% endif %}
+{% endblock %}
