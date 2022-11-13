@@ -26,3 +26,7 @@ def index(request):
 class SportListView(generic.ListView):
     model = Sport
     paginate_by = 8
+
+
+class SportDetailView(generic.DetailView):
+    model = Sport

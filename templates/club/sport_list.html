@@ -24,7 +24,7 @@
                 <h5>
                   {{ sport.name }}
                 </h5>
-                <a href="javascript:;" class="text-info icon-move-right">Read More
+                <a href="{% url "club:sport-detail" pk=sport.id %}" class="text-info icon-move-right">Read More
                   <i class="fas fa-arrow-right text-sm"></i>
                 </a>
               </div>
