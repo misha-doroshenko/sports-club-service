@@ -8,7 +8,7 @@
     <div class="container pt-7">
       <div class="row">
         <div class="col-lg-6">
-          <h3 class="mb-5">Check my latest blogposts</h3>
+          <h3 class="mb-5">Sport List</h3>
         </div>
       </div>
     <div class="row">
@@ -16,8 +16,8 @@
           <div class="col-lg-3 col-sm-6">
             <div class="card card-plain card-blog">
               <div class="card-image border-radius-lg position-relative">
-                <a href="javascript:;">
-                  <img class="w-100 border-radius-lg move-on-hover shadow" src="{{ sport.sport_avatar.url }}">
+                <a href="{% url "club:sport-detail" pk=sport.id %}">
+                  <img class="border-radius-lg move-on-hover shadow" src="{{ sport.sport_avatar.url }}" style="height: 275px; width: 275px; object-fit:cover;">
                 </a>
               </div>
               <div class="card-body px-0">
