@@ -91,7 +91,7 @@ class SportsClubListView(generic.ListView):
 
 class SportsClubDetailView(generic.DetailView):
     model = SportsClub
-    queryset = Sport.objects.all().prefetch_related("trainers")
+    queryset = SportsClub.objects.all().prefetch_related("trainers")
     template_name = "club/sports_club_detail.html"
     context_object_name = "sports_club"
 
