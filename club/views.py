@@ -76,3 +76,8 @@ class TrainerUpdateView(generic.UpdateView):
     template_name = "club/trainer_update_form.html"
     success_url = reverse_lazy("club:trainer-list")
 
+
+class TrainerDeleteView(generic.DeleteView):
+    model = Trainer
+    success_url = reverse_lazy("club:trainer-list")
+
