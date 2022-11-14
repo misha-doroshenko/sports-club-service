@@ -228,9 +228,10 @@ class SportsClubForm(forms.ModelForm):
             }
         ))
     swimming_pool = forms.BooleanField(
+        required=False,
         widget=forms.CheckboxInput(
             attrs={
-                "class": "form-control"
+                "class": "form-check-input"
             }
         ))
     sports_club_avatar = forms.ImageField(
@@ -242,7 +243,7 @@ class SportsClubForm(forms.ModelForm):
         ))
 
     class Meta:
-        model = Sport
+        model = SportsClub
         fields = (
             "name",
             "address",

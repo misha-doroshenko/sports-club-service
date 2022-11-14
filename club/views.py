@@ -113,5 +113,6 @@ class SportsClubUpdateView(generic.UpdateView):
 class SportsClubDeleteView(generic.DeleteView):
     model = SportsClub
     template_name = "club/sports_club_confirm_delete.html"
+    context_object_name = "sports_club"
     success_url = reverse_lazy("club:sports-club-list")
 
