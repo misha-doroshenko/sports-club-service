@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 
-from club.models import Sport, Trainer, SportsClub
+from club.models import Sport, Trainer, SportsClub, Workout
 
 
 class SportForm(forms.ModelForm):
@@ -250,4 +250,53 @@ class SportsClubForm(forms.ModelForm):
             "city",
             "swimming_pool",
             "sports_club_avatar",
+        )
+
+
+class WorkoutForm(forms.ModelForm):
+    sport = forms.ModelChoiceField(
+        queryset=Sport.objects.all(),
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Sport",
+                "class": "form-select"
+            }
+        ))
+    weekday = forms.ChoiceField(
+        choices=Workout.WEEKDAY_CHOICES,
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Weekday",
+                "class": "form-select"
+            }
+        ))
+    beginning_time = forms.ChoiceField(
+        choices=Workout.HOUR_CHOICES,
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Beginning time",
+                "class": "form-select"
+            }
+        ))
+    ending_time = forms.ChoiceField(
+        choices=Workout.HOUR_CHOICES,
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Ending time",
+                "class": "form-select"
+            }
+        ))
+
+    def clean(self):
+        if self.cleaned_data["ending_time"] <= self.cleaned_data["beginning_time"]:
+            raise ValidationError("Beginning time must be earlier that ending time")
+        return super(WorkoutForm, self).clean()
+
+    class Meta:
+        model = Workout
+        fields = (
+            "sport",
+            "weekday",
+            "beginning_time",
+            "ending_time",
         )

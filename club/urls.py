@@ -2,7 +2,8 @@ from django.urls import path
 
 from club.views import index, SportListView, SportDetailView, SportUpdateView, SportCreateView, SportDeleteView, \
     TrainerListView, TrainerDetailView, TrainerUpdateView, TrainerCreateView, TrainerDeleteView, SportsClubListView, \
-    SportsClubDetailView, SportsClubCreateView, SportsClubUpdateView, SportsClubDeleteView
+    SportsClubDetailView, SportsClubCreateView, SportsClubUpdateView, SportsClubDeleteView, WorkoutListView, \
+    toggle_assign_to_workout, WorkoutUpdateView, WorkoutCreateView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -21,6 +22,10 @@ urlpatterns = [
     path("sports-clubs/create", SportsClubCreateView.as_view(), name="sports-club-create"),
     path("sports-clubs/<int:pk>/update", SportsClubUpdateView.as_view(), name="sports-club-update"),
     path("sports-clubs/<int:pk>/delete", SportsClubDeleteView.as_view(), name="sports-club-delete"),
+    path("workouts/", WorkoutListView.as_view(), name="workout-list"),
+    path("workouts/<int:pk>/toggle-assign/", toggle_assign_to_workout, name="toggle-workout-assign"),
+    path("workouts/<int:pk>/update", WorkoutUpdateView.as_view(), name="workout-update"),
+    path("workouts/create", WorkoutCreateView.as_view(), name="workout-create"),
 ]
 
 app_name = "club"

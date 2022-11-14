@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from club.forms import SportForm, TrainerCreateForm, TrainerUpdateForm, SportsClubForm
-from club.models import Trainer, SportsClub, Sport
+from club.forms import SportForm, TrainerCreateForm, TrainerUpdateForm, SportsClubForm, WorkoutForm
+from club.models import Trainer, SportsClub, Sport, Workout
 
 
 def index(request):
@@ -116,3 +118,31 @@ class SportsClubDeleteView(generic.DeleteView):
     context_object_name = "sports_club"
     success_url = reverse_lazy("club:sports-club-list")
 
+
+class WorkoutListView(generic.ListView):
+    model = Workout
+    paginate_by = 4
+
+
+class WorkoutUpdateView(generic.UpdateView):
+    model = Workout
+    form_class = WorkoutForm
+    success_url = reverse_lazy("club:workout-list")
+
+
+class WorkoutCreateView(generic.CreateView):
+    model = Workout
+    form_class = WorkoutForm
+    success_url = reverse_lazy("club:workout-list")
+
+
+@login_required
+def toggle_assign_to_workout(request, pk):
+    trainer = Trainer.objects.get(id=request.user.id)
+    if (
+        Workout.objects.get(id=pk) in trainer.workouts.all()
+    ):
+        trainer.workouts.remove(pk)
+    else:
+        trainer.workouts.add(pk)
+    return HttpResponseRedirect(reverse_lazy("club:workout-list"))

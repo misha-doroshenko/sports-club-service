@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1 class="py3 pt-7 text-center">Workout Schedule
+    <br>
+    <a href="{% url "club:workout-create" %}" class="btn bg-gradient-primary">Create</a>
+  </h1>
+  <div class="card card-body border-0 shadow table-wrapper table-responsive" style="margin: 0 150px 50px 150px">
+      <table class="table table-hover">
+          <thead>
+              <tr>
+                  <th class="border-gray-200 text-center">№</th>
+                  <th class="border-gray-200 text-center">Sport</th>
+                  <th class="border-gray-200 text-center">Weekday</th>
+                  <th class="border-gray-200 text-center">Beginning</th>
+                  <th class="border-gray-200 text-center">Ending</th>
+                  <th class="border-gray-200 text-center">Assign for</th>
+                  <th class="border-gray-200 text-center">Update</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Item -->
+                {% for workout in workout_list %}
+                  <tr>
+                    <td class="text-center align-middle">
+                      {{ workout.id }}
+                    </td>
+                    <td class="text-center align-middle">
+                      {{ workout.sport.name }}
+                    </td>
+                    <td class="text-center align-middle">
+                      {{ workout.weekday }}
+                    </td>
+                    <td class="text-center align-middle">
+                      {{ workout.beginning_time }}
+                    </td>
+                    <td class="text-center align-middle">
+                      {{ workout.ending_time }}
+                    </td>
+                    <td class="text-center align-middle">
+                      {% if user.sport == workout.sport and workout not in user.workouts.all %}
+                        <a href="{% url 'club:toggle-workout-assign' pk=workout.id %}" class="btn btn-success link-to-page">
+                          Assign me from this workout
+                        </a>
+                      {% elif user.sport == workout.sport and workout in user.workouts.all%}
+                        <a href="{% url 'club:toggle-workout-assign' pk=workout.id %}" class="btn btn-danger link-to-page">
+                          Delete me from this workout
+                        </a>
+                      {% else %}
+                        Not your specialty
+                      {% endif %}
+                    </td>
+                    <td class="text-center align-middle">
+                      <a href="{% url "club:workout-update" pk=workout.id %}" class="btn bg-gradient-primary">Update</a>
+                    </td>
+                  </tr>
+                {% endfor %}
+          </tbody>
+      </table>
+  </div>
+{% endblock %}

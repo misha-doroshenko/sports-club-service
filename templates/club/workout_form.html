@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+  <section>
+    <div class="container py-4 mt-6">
+      <div class="row">
+        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+          <div class="card d-flex justify-content-center p-4 shadow-lg">
+            <div class="text-center">
+              <h1>{{ object|yesno:"Update,Create" }} Workout</h1>
+              <div class="card card-plain">
+            <form role="form" method="post" autocomplete="off">
+              {% csrf_token %}
+                <p>
+                  {{ form.errors }}
+                </p>
+              <div class="card-body pb-2">
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                  <label>Sport</label>
+                  <div class="input-group mb-4">
+                    {{ form.sport }}
+                  </div>
+                </div>
+                <div class="col-md-4 ps-2">
+                  <label>Weekday</label>
+                  <div class="input-group">
+                    {{ form.weekday }}
+                  </div>
+                </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                  <label>Beginning</label>
+                  <div class="input-group">
+                    {{ form.beginning_time }}
+                  </div>
+                  </div>
+                  <div class="form-group col-md-4 ps-2">
+                  <label>Ending</label>
+                  {{ form.ending_time }}
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 text-center">
+                    <input type="submit" value="Submit" class="btn bg-gradient-primary mt-3 mb-0">
+                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                  </div>
+                </div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+{% endblock %}

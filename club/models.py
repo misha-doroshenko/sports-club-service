@@ -93,3 +93,6 @@ class Workout(models.Model):
     beginning_time = models.TimeField(choices=HOUR_CHOICES)
     ending_time = models.TimeField(choices=HOUR_CHOICES)
     trainer = models.ManyToManyField(Trainer, related_name="workouts")
+
+    class Meta:
+        ordering = ["sport"]
