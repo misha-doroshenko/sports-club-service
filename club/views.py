@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from club.forms import SportForm, TrainerCreateForm, TrainerUpdateForm
+from club.forms import SportForm, TrainerCreateForm, TrainerUpdateForm, SportsClubForm
 from club.models import Trainer, SportsClub, Sport
 
 
@@ -80,4 +80,38 @@ class TrainerUpdateView(generic.UpdateView):
 class TrainerDeleteView(generic.DeleteView):
     model = Trainer
     success_url = reverse_lazy("club:trainer-list")
+
+
+class SportsClubListView(generic.ListView):
+    model = SportsClub
+    template_name = "club/sports_club_list.html"
+    context_object_name = "sports_club_list"
+    paginate_by = 8
+
+
+class SportsClubDetailView(generic.DetailView):
+    model = SportsClub
+    queryset = Sport.objects.all().prefetch_related("trainers")
+    template_name = "club/sports_club_detail.html"
+    context_object_name = "sports_club"
+
+
+class SportsClubCreateView(generic.CreateView):
+    model = SportsClub
+    form_class = SportsClubForm
+    template_name = "club/sports_club_form.html"
+    success_url = reverse_lazy("club:sports-club-list")
+
+
+class SportsClubUpdateView(generic.UpdateView):
+    model = SportsClub
+    form_class = SportsClubForm
+    template_name = "club/sports_club_form.html"
+    success_url = reverse_lazy("club:sports-club-list")
+
+
+class SportsClubDeleteView(generic.DeleteView):
+    model = SportsClub
+    template_name = "club/sports_club_confirm_delete.html"
+    success_url = reverse_lazy("club:sports-club-list")
 

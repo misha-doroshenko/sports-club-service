@@ -134,7 +134,6 @@ class TrainerCreateForm(UserCreationForm):
         )
 
 
-
 class TrainerUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
         widget=forms.TextInput(
@@ -203,4 +202,51 @@ class TrainerUpdateForm(forms.ModelForm):
             "username",
             "email",
             "trainer_avatar",
+        )
+
+
+class SportsClubForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control"
+            }
+        ))
+    address = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Address",
+                "class": "form-control"
+            }
+        ))
+    city = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "City",
+                "class": "form-control"
+            }
+        ))
+    swimming_pool = forms.BooleanField(
+        widget=forms.CheckboxInput(
+            attrs={
+                "class": "form-control"
+            }
+        ))
+    sports_club_avatar = forms.ImageField(
+        required=False,
+        widget=forms.FileInput(
+            attrs={
+                "class": "form-control"
+                }
+        ))
+
+    class Meta:
+        model = Sport
+        fields = (
+            "name",
+            "address",
+            "city",
+            "swimming_pool",
+            "sports_club_avatar",
         )
