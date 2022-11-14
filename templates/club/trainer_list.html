@@ -10,7 +10,7 @@
         <div>
           <h3>
             Trainer List
-            <a class="btn bg-gradient-primary float-end" href="#">Create</a>
+            <a class="btn bg-gradient-primary float-end" href="{% url "club:sign-up" %}">Create</a>
           </h3>
         </div>
       </div>
@@ -19,7 +19,7 @@
           <div class="col-lg-3 col-sm-6">
             <div class="card card-plain card-blog">
               <div class="card-image border-radius-lg position-relative">
-                <a href="#">
+                <a href="{% url "club:trainer-detail" pk=trainer.id %}">
                   <img class="border-radius-lg move-on-hover shadow" src="{{ trainer.trainer_avatar.url }}" style="height: 300px; width: 300px; object-fit:cover;">
                 </a>
               </div>
@@ -33,7 +33,7 @@
                   <br>
                   Experience: {{ trainer.experience }} year{{ trainer.experience|pluralize }}
                 </p>
-                <a href="#" class="text-info icon-move-right">Read More
+                <a href="{% url "club:trainer-detail" pk=trainer.id %}" class="text-info icon-move-right">Read More
                   <i class="fas fa-arrow-right text-sm"></i>
                 </a>
               </div>

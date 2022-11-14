@@ -1,7 +1,7 @@
 from django.urls import path
 
 from club.views import index, SportListView, SportDetailView, SportUpdateView, SportCreateView, SportDeleteView, \
-    TrainerListView, TrainerDetailView, TrainerUpdateView
+    TrainerListView, TrainerDetailView, TrainerUpdateView, TrainerCreateView
 
 urlpatterns = [
     path("", index, name="index"),
@@ -12,6 +12,7 @@ urlpatterns = [
     path("sports/<int:pk>/delete", SportDeleteView.as_view(), name="sport-delete"),
     path("trainers/", TrainerListView.as_view(), name="trainer-list"),
     path("trainers/<int:pk>/", TrainerDetailView.as_view(), name="trainer-detail"),
+    path("trainers/sign-up", TrainerCreateView.as_view(), name="sign-up"),
     path("trainers/<int:pk>/update", TrainerUpdateView.as_view(), name="trainer-update"),
 ]
 
