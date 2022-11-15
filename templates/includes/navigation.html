@@ -28,29 +28,38 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link cursor-pointer">
+                <a href="{% url "club:workout-list" %}" class="nav-link cursor-pointer">
                   <img src="../../static/assets/img/appointment.png" style="width: 20px; height: 20px">
                   Workouts
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link cursor-pointer">
+                <a href="{% url "club:sports-club-list" %}" class="nav-link cursor-pointer">
                   <img src="../../static/assets/img/building.png" style="width: 20px; height: 20px">
                   Sports Clubs
                 </a>
               </li>
-              <li class="nav-item ms-lg-auto">
-                <a class="nav-link nav-link-icon me-2" href="{% url "accounts:logout" %}">
-                  <i class="fa fa-sign-out me-1"></i>
-                  <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">Logout</p>
-                </a>
-              </li>
+              {% if user.is_authenticated %}
+                <li class="nav-item ms-lg-auto">
+                  <a class="nav-link nav-link-icon me-2" href="{% url "accounts:logout" %}">
+                    <i class="fa fa-sign-out me-1"></i>
+                    <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">Logout</p>
+                  </a>
+                </li>
               <li class="nav-item my-auto ms-3 ms-lg-0">
                 {% if user.is_authenticated %}
                   <a href="#" class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">{{ user.get_username }}</a>
                 {% else %}
                   <a href="{% url "accounts:login" %}" class="btn btn-sm bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Login</a>
                 {% endif %}
+              {% else %}
+              <li class="nav-item my-auto ms-3 ms-lg-auto">
+                {% if user.is_authenticated %}
+                  <a href="#" class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">{{ user.get_username }}</a>
+                {% else %}
+                  <a href="{% url "accounts:login" %}" class="btn btn-sm bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Login</a>
+                {% endif %}
+              {% endif %}
               </li>
             </ul>
           </div>
