@@ -1535,9 +1535,9 @@ progress {
   .form-control:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #e293d3;
+    border-color: rgb(255, 157, 0);
     outline: 0;
-    box-shadow: 0 0 0 2px #e9aede; }
+    box-shadow: 0 0 0 2px rgb(255, 157, 0); }
   .form-control::-webkit-date-and-time-value {
     height: 1.4rem; }
   .form-control::placeholder {
@@ -14130,4 +14130,5 @@ pre[class*="language-"] {
   color-adjust: exact;
   print-color-adjust: exact;
 }
+
 /*# sourceMappingURL=soft-design-system.css.map */

@@ -4,7 +4,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from club.forms import SportForm, TrainerCreateForm, TrainerUpdateForm, SportsClubForm, WorkoutForm
+from club.forms import SportForm, TrainerCreateForm, TrainerUpdateForm, SportsClubForm, WorkoutForm, SportSearchForm, \
+    TrainerSearchForm, SportsClubSearchForm, WorkoutSearchForm
 from club.models import Trainer, SportsClub, Sport, Workout
 
 
@@ -30,6 +31,27 @@ def index(request):
 class SportListView(generic.ListView):
     model = Sport
     paginate_by = 8
+    queryset = Sport.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        name = self.request.GET.get("name", "")
+
+        context = super(SportListView, self).get_context_data(**kwargs)
+        context["search_form"] = SportSearchForm(initial={
+            "name": name
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = SportSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class SportDetailView(generic.DetailView):
@@ -58,6 +80,26 @@ class TrainerListView(generic.ListView):
     model = Trainer
     queryset = Trainer.objects.select_related("sport")
     paginate_by = 8
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        name = self.request.GET.get("name", "")
+
+        context = super(TrainerListView, self).get_context_data(**kwargs)
+        context["search_form"] = TrainerSearchForm(initial={
+            "name": name
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = TrainerSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                first_name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class TrainerDetailView(generic.DetailView):
@@ -89,6 +131,27 @@ class SportsClubListView(generic.ListView):
     template_name = "club/sports_club_list.html"
     context_object_name = "sports_club_list"
     paginate_by = 8
+    queryset = SportsClub.objects.all()
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        name = self.request.GET.get("name", "")
+
+        context = super(SportsClubListView, self).get_context_data(**kwargs)
+        context["search_form"] = SportsClubSearchForm(initial={
+            "name": name
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = SportsClubSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class SportsClubDetailView(generic.DetailView):
@@ -122,6 +185,27 @@ class SportsClubDeleteView(generic.DeleteView):
 class WorkoutListView(generic.ListView):
     model = Workout
     paginate_by = 4
+    queryset = Workout.objects.select_related("sport")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        name = self.request.GET.get("name", "")
+
+        context = super(WorkoutListView, self).get_context_data(**kwargs)
+        context["search_form"] = WorkoutSearchForm(initial={
+            "name": name
+        })
+
+        return context
+
+    def get_queryset(self):
+        form = WorkoutSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return self.queryset.filter(
+                sport__name__icontains=form.cleaned_data["name"]
+            )
+
+        return self.queryset
 
 
 class WorkoutUpdateView(generic.UpdateView):

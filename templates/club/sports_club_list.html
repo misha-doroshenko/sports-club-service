@@ -11,6 +11,12 @@
           <h3>
             Sports Clubs List
             <a class="btn bg-gradient-primary float-end" href="{% url "club:sports-club-create" %}">Create</a>
+            <form action="" method="get" class="form-inline">
+              {{ search_form }}
+              <button class="btn bg-gradient-primary my-auto" type="submit">
+                  <i class="fa fa-search"></i>
+              </button>
+            </form>
           </h3>
         </div>
       </div>

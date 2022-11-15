@@ -27,7 +27,7 @@ class SportForm(forms.ModelForm):
         widget=forms.FileInput(
             attrs={
                 "class": "form-control"
-                }
+            }
         ))
 
     class Meta:
@@ -239,7 +239,7 @@ class SportsClubForm(forms.ModelForm):
         widget=forms.FileInput(
             attrs={
                 "class": "form-control"
-                }
+            }
         ))
 
     class Meta:
@@ -300,3 +300,51 @@ class WorkoutForm(forms.ModelForm):
             "beginning_time",
             "ending_time",
         )
+
+
+class SportSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=63,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by sport's name",
+                   "class": "form-control d-inline w-25"}
+        )
+    )
+
+
+class SportsClubSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=63,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by sports' club name",
+                   "class": "form-control d-inline w-25"}
+        )
+    )
+
+
+class TrainerSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=63,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by trainer's name",
+                   "class": "form-control d-inline w-25"}
+        )
+    )
+
+
+class WorkoutSearchForm(forms.Form):
+    name = forms.CharField(
+        max_length=63,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"placeholder": "Search by sport's name",
+                   "class": "form-control d-inline w-25"}
+        )
+    )

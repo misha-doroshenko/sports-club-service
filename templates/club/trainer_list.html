@@ -11,6 +11,12 @@
           <h3>
             Trainer List
             <a class="btn bg-gradient-primary float-end" href="{% url "club:sign-up" %}">Create</a>
+            <form action="" method="get" class="form-inline">
+              {{ search_form }}
+              <button class="btn bg-gradient-primary my-auto" type="submit">
+                  <i class="fa fa-search"></i>
+              </button>
+            </form>
           </h3>
         </div>
       </div>
