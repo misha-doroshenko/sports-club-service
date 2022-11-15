@@ -9,12 +9,12 @@
         <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
           <div class="card d-flex justify-content-center p-4 shadow-lg">
             <div class="text-center">
-              <h1>{{ object|yesno:"Update,Create" }} Sport</h1>
+              <h1>{{ object|yesno:"Update,Create" }} Sports Club</h1>
               <div class="card card-plain">
             <form role="form" method="post" enctype="multipart/form-data" autocomplete="off">
               {% csrf_token %}
               <p>
-                {{ form.name.errors }}
+                {{ form.name.non_field_errors }}
               </p>
               <div class="card-body pb-2">
                 <div class="row">
@@ -52,7 +52,7 @@
                 <div class="row">
                   <div class="col-md-12 text-center">
                     <input type="submit" value="Submit" class="btn bg-gradient-primary mt-3 mb-0">
-                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{% url "club:sports-club-list" %}">Cancel</a>
                   </div>
                 </div>
               </div>

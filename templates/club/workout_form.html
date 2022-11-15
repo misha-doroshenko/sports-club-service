@@ -14,7 +14,7 @@
             <form role="form" method="post" autocomplete="off">
               {% csrf_token %}
                 <p>
-                  {{ form.errors }}
+                  {{ form.non_field_errors }}
                 </p>
               <div class="card-body pb-2">
                 <div class="row justify-content-center">
@@ -46,7 +46,7 @@
                 <div class="row">
                   <div class="col-md-12 text-center">
                     <input type="submit" value="Submit" class="btn bg-gradient-primary mt-3 mb-0">
-                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{% url "club:workout-list" %}">Cancel</a>
                   </div>
                 </div>
               </div>

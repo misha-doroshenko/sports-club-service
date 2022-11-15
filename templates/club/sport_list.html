@@ -11,6 +11,13 @@
           <h3>
             Sport List
             <a class="btn bg-gradient-primary float-end" href="{% url "club:sport-create" %}">Create</a>
+
+              <form action="" method="get" class="form-inline">
+                {{ search_form }}
+                <button class="btn bg-gradient-primary my-auto" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+              </form>
           </h3>
         </div>
       </div>
@@ -38,6 +45,24 @@
      </div>
   </section>
   {% else %}
-    <h1>There are no networks</h1>
+    <section class="py-3">
+    <div class="container pt-7">
+      <div class="row">
+        <div>
+          <h3>
+            Sport List
+            <a class="btn bg-gradient-primary float-end" href="{% url "club:sport-create" %}">Create</a>
+            <form action="" method="get" class="form-inline">
+                {{ search_form }}
+                <button class="btn bg-gradient-primary my-auto" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+              </form>
+          </h3>
+          <h3 class="text-muted">Ooops... No sports found</h3>
+        </div>
+      </div>
+    </div>
+    </section>
   {% endif %}
 {% endblock %}
