@@ -25,6 +25,7 @@
                   <th class="border-gray-200 text-center">Ending</th>
                   <th class="border-gray-200 text-center">Assign</th>
                   <th class="border-gray-200 text-center">Update</th>
+                  <th class="border-gray-200 text-center">Delete</th>
               </tr>
           </thead>
           <tbody>
@@ -61,6 +62,9 @@
                     </td>
                     <td class="text-center align-middle">
                       <a href="{% url "club:workout-update" pk=workout.id %}" class="btn bg-gradient-primary">Update</a>
+                    </td>
+                    <td class="text-center align-middle">
+                      <a href="{% url "club:workout-delete" pk=workout.id %}" class="btn bg-gradient-secondary">Delete</a>
                     </td>
                   </tr>
                 {% endfor %}

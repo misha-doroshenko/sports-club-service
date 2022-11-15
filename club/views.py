@@ -220,6 +220,11 @@ class WorkoutCreateView(generic.CreateView):
     success_url = reverse_lazy("club:workout-list")
 
 
+def workout_delete(request, pk):
+    Workout.objects.filter(id=pk).delete()
+    return HttpResponseRedirect(reverse_lazy("club:workout-list"))
+
+
 @login_required
 def toggle_assign_to_workout(request, pk):
     trainer = Trainer.objects.get(id=request.user.id)
