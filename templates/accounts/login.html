@@ -10,7 +10,7 @@
 {% block content %}
 
   <div class="page-header-login">
-  <div class="position-absolute fixed-top ms-auto w-50 h-100 z-index-0 d-none d-sm-none d-md-block me-n4" style="background-image: url(https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/ivancik.jpg); background-size: cover;">
+  <div class="position-absolute fixed-top border-radius-2xl ms-auto w-50 h-100 z-index-0 d-none d-sm-none d-md-block me-n4" style="background-image: url(https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/ivancik.jpg); background-size: cover;">
     </div>
       <div class="container py-5">
         <div class="row">
@@ -40,21 +40,12 @@
                   <div class="mb-3">
                     {{ form.password }}
                   </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
-                  </div>
                   <div class="text-center">
-                    <button type="submit" name="login"
-                            class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    <button type="submit" name="login" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">
+                      Sign in
+                    </button>
                   </div>
                 </form>
-              </div>
-              <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                <p class="mb-4 text-sm mx-auto">
-                  Don't have an account?
-                  <a href="{% url 'accounts:login' %}" class="text-primary text-gradient font-weight-bold">Sign UP</a>
-                </p>
               </div>
             </div>
           </div>
