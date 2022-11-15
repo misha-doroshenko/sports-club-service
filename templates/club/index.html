@@ -18,11 +18,6 @@
             <h1 class="text-white pt-3 mt-n5">
              Sports Club Service
             </h1>
-            <div class="col-lg-7 border-radius-xl mx-auto blur shadow-blur" style="width: fit-content; height: fit-content; margin: auto; padding-left: 10px; padding-right: 10px">
-                <h5 class="text-gradient text-primary">
-                  You visited this page {{ num_visits }} time{{ num_visits|pluralize }}
-                </h5>
-              </div>
           </div>
         </div>
       </div>
@@ -75,8 +70,12 @@
           </div>
         </div>
       </div>
+
     </div>
   </section>
+  <h5 class="text-gradient text-primary font-weight-normal text-center pt-4">
+    You visited this page {{ num_visits }} time{{ num_visits|pluralize }}
+  </h5>
 {% endblock content %}
 
 <!-- Specific JS goes HERE -->
