@@ -34,6 +34,18 @@ class TrainerAdmin(UserAdmin):
     )
 
 
-admin.site.register(Workout)
-admin.site.register(SportsClub)
+@admin.register(SportsClub)
+class SportsClubAdmin(admin.ModelAdmin):
+    list_display = ("name", "city", "address")
+    search_fields = ("name",)
+    list_filter = ("city",)
+
+
+@admin.register(Workout)
+class WorkoutAdmin(admin.ModelAdmin):
+    list_display = ("sport", "weekday", "beginning_time", "ending_time")
+    search_fields = ("sport",)
+    list_filter = ("weekday", "sport")
+
+
 admin.site.register(Sport)
