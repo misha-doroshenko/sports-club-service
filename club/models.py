@@ -8,8 +8,6 @@ import datetime
 
 
 def photo_path(instance, filename):
-    print(filename)
-    print(instance.directory)
     base_filename, file_extension = os.path.splitext(filename)
     chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
     random_string = ''.join((random.choice(chars)) for _ in range(10))
