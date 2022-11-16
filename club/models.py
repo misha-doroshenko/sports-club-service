@@ -1,7 +1,24 @@
+import os
+import random
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 import datetime
+
+
+def photo_path(instance, filename):
+    print(filename)
+    print(instance.directory)
+    base_filename, file_extension = os.path.splitext(filename)
+    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+    random_string = ''.join((random.choice(chars)) for _ in range(10))
+    return "{directory}{basename}{randomstring}{ext}".format(
+        directory=instance.directory,
+        basename=base_filename,
+        randomstring=random_string,
+        ext=file_extension
+    )
 
 
 class Sport(models.Model):
@@ -10,9 +27,10 @@ class Sport(models.Model):
     sport_avatar = models.ImageField(
         null=True,
         blank=True,
-        upload_to="sports_avatars",
+        upload_to=photo_path,
         default="default.png"
     )
+    directory = "sport_avatars/"
 
     def __str__(self):
         return self.name
@@ -23,12 +41,13 @@ class SportsClub(models.Model):
     address = models.CharField(max_length=50)
     city = models.CharField(max_length=20)
     swimming_pool = models.BooleanField()
-    club_avatar = models.ImageField(
+    sports_club_avatar = models.ImageField(
         null=True,
         blank=True,
-        upload_to="clubs_avatars",
+        upload_to=photo_path,
         default="default.png"
     )
+    directory = "sports_club_avatars/"
 
     class Meta:
         constraints = [
@@ -58,9 +77,10 @@ class Trainer(AbstractUser):
     trainer_avatar = models.ImageField(
         null=True,
         blank=True,
-        upload_to="trainers_avatars",
+        upload_to=photo_path,
         default="default.png"
     )
+    directory = "trainer_avatars/"
     experience = models.IntegerField(null=True)
 
     class Meta:
