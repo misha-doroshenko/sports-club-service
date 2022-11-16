@@ -1,0 +1,65 @@
+ {% extends "base.html" %}
+
+{% block title %} Sign IN {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block body_class %} sign-in-illustration {% endblock body_class %}
+
+{% block content %}
+
+  <div class="page-header-login">
+  <div class="position-absolute fixed-top border-radius-2xl ms-auto w-50 h-100 z-index-0 d-none d-sm-none d-md-block me-n4" style="background-image: url(https://appsrv1-147a1.kxcdn.com/soft-ui-design-v1.0.1/img/ivancik.jpg); background-size: cover;">
+    </div>
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-5 d-flex justify-content-center flex-column" style="position: absolute;
+  top: 50%;
+  left: 40%;
+  -ms-transform: translate(-40%, -50%);
+  transform: translate(-40%, -50%);">
+            <div class="card card-body d-flex justify-content-center shadow-lg p-5 blur align-items-center">
+              <h3 class="text-center">Sign In</h3>
+                <p class="mb-0">
+                  {% if msg %}
+                      {{ msg | safe }}
+                  {% else %}
+                      Add your credentials
+                  {% endif %}
+                </p>
+              <div class="card-body">
+
+                <form method="post" action="" role="form">
+
+                  {% csrf_token %}
+
+                  <div class="mb-3">
+                    {{ form.username }}
+                  </div>
+                  <div class="mb-3">
+                    {{ form.password }}
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" name="login" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">
+                      Sign in
+                    </button>
+                    <input type="hidden" name="next" value="{{ next }}">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+
+  <script src="../../static/assets/js/soft-design-system.min.js?v=1.0.1" type="text/javascript"></script>
+
+{% endblock javascripts %}

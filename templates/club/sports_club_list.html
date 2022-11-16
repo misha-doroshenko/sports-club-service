@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block body_class %} bg-gray-100 {% endblock body_class %}
+
+{% block content %}
+  {% if sports_club_list %}
+    <section class="py-3">
+    <div class="container pt-7">
+      <div class="row">
+        <div>
+          <h3>
+            Sports Clubs List
+            <a class="btn bg-gradient-primary float-end" href="{% url "club:sports-club-create" %}">Create</a>
+            <form action="" method="get" class="form-inline">
+              {{ search_form }}
+              <button class="btn bg-gradient-primary my-auto" type="submit">
+                  <i class="fa fa-search"></i>
+              </button>
+            </form>
+          </h3>
+        </div>
+      </div>
+    <div class="row">
+      {% for sports_club in sports_club_list %}
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-plain card-blog">
+              <div class="card-image border-radius-lg position-relative">
+                <a href="{% url "club:sports-club-detail" pk=sports_club.id %}">
+                  <img class="border-radius-lg move-on-hover shadow" src="{{ sports_club.sports_club_avatar.url }}" style="height: 300px; width: 300px; object-fit:cover;">
+                </a>
+              </div>
+              <div class="card-body px-0">
+                <h5>
+                  {{ sports_club.name }}
+                </h5>
+                <p>
+                  Swimming pool:
+                  {% if sports_club.swimming_pool %}
+                    <img src="../../static/assets/img/correct.png" title="correct icons" style="width: 20px; height: 20px">
+                  {% else %}
+                    <img src="../../static/assets/img/remove.png" title="delete icons" style="width: 20px; height: 20px">
+                  {% endif %}
+                  <br>
+                  City: {{ sports_club.city }}
+                </p>
+                <a href="{% url "club:sports-club-detail" pk=sports_club.id %}" class="text-info icon-move-right">Read More
+                  <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+       </div>
+     </div>
+  </section>
+  {% else %}
+    <h1>There are no sports clubs</h1>
+  {% endif %}
+{% endblock %}

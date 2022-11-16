@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+  <section>
+    <div class="container py-4 mt-6">
+      <div class="row">
+        <div class="col-lg-7 mx-auto d-flex justify-content-center flex-column">
+          <div class="card d-flex justify-content-center p-4 shadow-lg">
+            <div class="text-center">
+              <h1>{{ object|yesno:"Update,Create" }} Trainer</h1>
+              <div class="card card-plain">
+            <form role="form" method="post" enctype="multipart/form-data" autocomplete="off">
+              {% csrf_token %}
+              <span class="text-error"> {{ form.experience.errors }}</span>
+              <span class="text-error">{{ form.password1.errors }}</span>
+              <span class="text-error">{{ form.password2.errors }}</span>
+              <div class="card-body pb-2">
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                  <label>First Name</label>
+                  <div class="input-group mb-4">
+                    {{ form.first_name }}
+                  </div>
+                </div>
+                <div class="col-md-4 ps-2">
+                  <label>Last Name</label>
+                  <div class="input-group">
+                    {{ form.last_name }}
+                  </div>
+                </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                    <label>Password</label>
+                  <div class="input-group mb-4">
+                    {{ form.password1 }}
+                  </div>
+                  </div>
+
+                  <div class="col-md-4 ps-2">
+                    <label>Repeat password</label>
+                  <div class="input-group">
+                    {{ form.password2 }}
+                  </div>
+                  </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-md-4">
+                  <label>Username</label>
+                  <div class="input-group">
+                    {{ form.username }}
+                  </div>
+                  </div>
+                  <div class="form-group col-md-4 ps-2">
+                  <label>Choose the sports club</label>
+                  {{ form.sports_club }}
+                </div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                  <label>Email</label>
+                  <div class="input-group">
+                    {{ form.email }}
+                  </div>
+                  </div>
+                  <div class="form-group col-md-2 ps-2">
+                  <label>Experience</label>
+                  {{ form.experience }}
+                </div>
+                </div>
+                  <div class="row justify-content-center">
+                    <div class="col-md-4">
+                      <label>Provide your photo</label>
+                      {{ form.trainer_avatar }}
+                    </div>
+                    <div class="col-md-4 ps-2">
+                      <label>Sport</label>
+                      <div class="input-group">
+                        {{ form.sport }}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12 justify-content-center">
+                    <input type="submit" value="Submit" class="btn bg-gradient-primary mt-3 mb-0">
+                    <a class="btn bg-gradient-danger mt-3 mb-0" href="{% url "club:index" %}">Cancel</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+{% endblock %}

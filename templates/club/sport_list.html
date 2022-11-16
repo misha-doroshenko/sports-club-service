@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block body_class %} bg-gray-100 {% endblock body_class %}
+
+{% block content %}
+
+  {% if sport_list %}
+    <section class="py-3">
+    <div class="container pt-7">
+      <div class="row">
+        <div>
+          <h3>
+            Sport List
+            <a class="btn bg-gradient-primary float-end" href="{% url "club:sport-create" %}">Create</a>
+              <form action="" method="get" class="form-inline">
+                {{ search_form }}
+                <button class="btn bg-gradient-primary my-auto" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+              </form>
+          </h3>
+        </div>
+      </div>
+    <div class="row">
+      {% for sport in sport_list %}
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card-plain card-blog">
+              <div class="card-image border-radius-lg position-relative">
+                <a href="{% url "club:sport-detail" pk=sport.id %}">
+                  <img class="border-radius-lg move-on-hover shadow" src="{{ sport.sport_avatar.url }}" style="height: 300px; width: 300px; object-fit:cover;">
+                </a>
+              </div>
+              <div class="card-body px-0">
+                <h5>
+                  {{ sport.name }}
+                </h5>
+                <a href="{% url "club:sport-detail" pk=sport.id %}" class="text-info icon-move-right">Read More
+                  <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+       </div>
+     </div>
+  </section>
+  {% else %}
+    <section class="py-3">
+    <div class="container pt-7">
+      <div class="row">
+        <div>
+          <h3>
+            Sport List
+            <a class="btn bg-gradient-primary float-end" href="{% url "club:sport-create" %}">Create</a>
+            <form action="" method="get" class="form-inline">
+                {{ search_form }}
+                <button class="btn bg-gradient-primary my-auto" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+              </form>
+          </h3>
+          <h3 class="text-muted">Ooops... No sports found</h3>
+        </div>
+      </div>
+    </div>
+    </section>
+  {% endif %}
+{% endblock %}

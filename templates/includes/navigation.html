@@ -1,0 +1,66 @@
+{% load static %}
+<div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+          <div class="container-fluid">
+            <a class="navbar-brand font-weight-bolder ms-sm-3" href="/" rel="tooltip" data-placement="bottom">
+              Sports Club Service
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0" id="navigation">
+              <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a href="{% url "club:sport-list" %}" class="nav-link cursor-pointer">
+                    <img src="{% static "assets/img/dumbbell_navigation.png" %}" style="width: 20px; height: 20px">
+                    Sports
+                  </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a href="{% url "club:trainer-list" %}" class="nav-link cursor-pointer">
+                    <img src="{% static "assets/img/trainer.png" %}" style="width: 20px; height: 20px">
+                    Trainers
+                  </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a href="{% url "club:sports-club-list" %}" class="nav-link cursor-pointer">
+                    <img src="{% static "assets/img/building.png" %}" style="width: 20px; height: 20px">
+                    Sports Clubs
+                  </a>
+                </li>
+                <li class="nav-item dropdown dropdown-hover mx-2">
+                  <a href="{% url "club:workout-list" %}" class="nav-link cursor-pointer">
+                    <img src="{% static "assets/img/appointment.png" %}" style="width: 20px; height: 20px">
+                    Workouts
+                  </a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item ms-lg-auto">
+                  <a class="nav-link nav-link-icon me-2" href="{% url "accounts:logout" %}">
+                    <i class="fa fa-sign-out me-1"></i>
+                    <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Logout">Logout</p>
+                  </a>
+                </li>
+                <li class="nav-item my-auto ms-3 ms-lg-0">
+                  <img class="avatar rounded-circle" style="height: 38px; width: 38px; object-fit:cover;" alt="Image placeholder" src="{{ user.trainer_avatar.url }}">
+                  <a href="{% url "club:trainer-detail" pk=user.id %}" class="btn btn-sm  bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">{{ user.get_username }}</a>
+                </li>
+              {% else %}
+              <li class="nav-item my-auto ms-3 ms-lg-auto">
+                <a href="{% url "accounts:login" %}" class="btn btn-sm bg-gradient-primary btn-round mb-0 me-1 mt-2 mt-md-0">Login</a>
+              </li>
+              {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
