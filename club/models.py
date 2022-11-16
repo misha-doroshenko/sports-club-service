@@ -86,7 +86,7 @@ class Trainer(AbstractUser):
         verbose_name_plural = "trainers"
 
     def __str__(self):
-        return f"{self.username} ({self.first_name} {self.last_name})"
+        return f"{self.first_name} {self.last_name} | {self.sport.name}"
 
 
 class Workout(models.Model):

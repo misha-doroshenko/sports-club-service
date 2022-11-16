@@ -295,10 +295,22 @@ class WorkoutForm(forms.ModelForm):
                 "class": "form-select"
             }
         ))
+    trainer = forms.ModelMultipleChoiceField(
+        queryset=Trainer.objects.all(),
+        widget=forms.SelectMultiple(
+            attrs={
+                "placeholder": "Trainers",
+                "class": "form-select"
+            }
+        )
+    )
 
     def clean(self):
         if self.cleaned_data["ending_time"] <= self.cleaned_data["beginning_time"]:
             raise ValidationError("Beginning time must be earlier that ending time")
+        for trainer in self.cleaned_data["trainer"]:
+            if trainer.sport != self.cleaned_data["sport"]:
+                raise ValidationError("The trainer's sport and workout's sport must be the same")
         return super(WorkoutForm, self).clean()
 
     class Meta:
@@ -308,6 +320,7 @@ class WorkoutForm(forms.ModelForm):
             "weekday",
             "beginning_time",
             "ending_time",
+            "trainer"
         )
 
 
