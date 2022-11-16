@@ -157,6 +157,14 @@ class TrainerUpdateForm(forms.ModelForm):
                 "class": "form-select"
             }
         ))
+    sport = forms.ModelChoiceField(
+        queryset=Sport.objects.all(),
+        widget=forms.Select(
+            attrs={
+                "placeholder": "Sport",
+                "class": "form-select"
+            }
+        ))
     experience = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={
@@ -198,6 +206,7 @@ class TrainerUpdateForm(forms.ModelForm):
             "first_name",
             "last_name",
             "sports_club",
+            "sport",
             "experience",
             "username",
             "email",

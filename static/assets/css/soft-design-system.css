@@ -1696,7 +1696,7 @@ textarea.form-control-lg {
   .form-select:focus {
     border-color: #e293d3;
     outline: 0;
-    box-shadow: 0 0 0 2px #e9aede; }
+    box-shadow: 0 0 0 2px rgb(255, 157, 0); }
   .form-select[multiple], .form-select[size]:not([size="1"]) {
     padding-right: 0.75rem;
     background-image: none; }
@@ -1733,7 +1733,7 @@ textarea.form-control-lg {
   height: 1.23em;
   margin-top: 0.135em;
   vertical-align: top;
-  background-color: #fff;
+  background-color: lightgrey;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1815,9 +1815,9 @@ textarea.form-control-lg {
   .form-range:focus {
     outline: 0; }
     .form-range:focus::-webkit-slider-thumb {
-      box-shadow: 0 0 0 1px #fff, 0 0 0 2px #e9aede; }
+      box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgb(255, 157, 0); }
     .form-range:focus::-moz-range-thumb {
-      box-shadow: 0 0 0 1px #fff, 0 0 0 2px #e9aede; }
+      box-shadow: 0 0 0 1px #fff, 0 0 0 2px rgb(255, 157, 0); }
   .form-range::-moz-focus-outer {
     border: 0; }
   .form-range::-webkit-slider-thumb {
@@ -3520,7 +3520,7 @@ textarea.form-control-lg {
 .page-link {
   position: relative;
   display: block;
-  color: #cb0c9f;
+  color: rgb(255, 157, 0);
   background-color: #fff;
   border: 1px solid #dee2e6;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
@@ -3529,15 +3529,15 @@ textarea.form-control-lg {
       transition: none; } }
   .page-link:hover {
     z-index: 2;
-    color: #830866;
+    color: rgb(255, 157, 0);
     background-color: #e9ecef;
     border-color: #dee2e6; }
   .page-link:focus {
     z-index: 3;
-    color: #830866;
+    color: rgb(255, 157, 0);
     background-color: #e9ecef;
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(203, 12, 159, 0.25); }
+    box-shadow: 0 0 0 0.2rem rgb(255, 157, 0); }
 
 .page-item:not(:first-child) .page-link {
   margin-left: -1px; }
@@ -8095,8 +8095,8 @@ textarea.form-control-lg {
   justify-content: center;
   font-size: 1rem;
   border-radius: 0.75rem;
-  height: 48px;
-  width: 48px;
+  height: 38px;
+  width: 38px;
   transition: all .2s ease-in-out; }
   .avatar img {
     width: 100%;
@@ -14112,23 +14112,5 @@ pre[class*="language-"] {
 
 .token.entity {
   cursor: help; }
-
-.form-check-input {
-  width: 1em;
-  height: 1em;
-  margin-top: 0.25em;
-  vertical-align: top;
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
-  print-color-adjust: exact;
-}
 
 /*# sourceMappingURL=soft-design-system.css.map */

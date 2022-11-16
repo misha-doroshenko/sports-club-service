@@ -70,25 +70,23 @@
                   {{ form.experience }}
                 </div>
                 </div>
-                <div class="form-group mb-0 mt-md-0 mt-4 col-md-7 mx-auto">
-                  <label>Provide your photo</label>
-                  {{ form.trainer_avatar }}
-                </div>
-                <div class="row">
                   <div class="row justify-content-center">
-                  <div class="col-md-4">
-                  <label>Sport</label>
-                  <div class="input-group">
-                    {{ form.sport }}
+                    <div class="col-md-4">
+                      <label>Provide your photo</label>
+                      {{ form.trainer_avatar }}
+                    </div>
+                    <div class="col-md-4 ps-2">
+                      <label>Sport</label>
+                      <div class="input-group">
+                        {{ form.sport }}
+                      </div>
+                    </div>
                   </div>
-                  </div>
-
-                  <div class="col-md-12 text-center">
+                  <div class="col-md-12 justify-content-center">
                     <input type="submit" value="Submit" class="btn bg-gradient-primary mt-3 mb-0">
                     <a class="btn bg-gradient-danger mt-3 mb-0" href="{% url "club:index" %}">Cancel</a>
                   </div>
                 </div>
-              </div>
               </form>
             </div>
           </div>

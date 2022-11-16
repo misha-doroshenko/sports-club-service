@@ -184,7 +184,7 @@ class SportsClubDeleteView(generic.DeleteView):
 
 class WorkoutListView(generic.ListView):
     model = Workout
-    paginate_by = 4
+    paginate_by = 5
     queryset = Workout.objects.select_related("sport")
 
     def get_context_data(self, *, object_list=None, **kwargs):
