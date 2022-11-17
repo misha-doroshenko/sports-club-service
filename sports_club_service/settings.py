@@ -12,8 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+import boto3
+from botocore.client import Config
 from decouple import config
 import dj_database_url
+
+client = boto3.client('s3', config=Config(signature_version='s3v4'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
