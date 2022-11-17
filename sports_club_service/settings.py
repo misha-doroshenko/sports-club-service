@@ -12,12 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
-import boto3
-from botocore.client import Config
 from decouple import config
 import dj_database_url
-
-client = boto3.client('s3', config=Config(signature_version='s3v4'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -49,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "accounts",
+    "storages",
     "club",
 ]
 
@@ -157,3 +154,6 @@ AWS_S3_ACCESS_KEY_ID = config("AWS_S3_ACCESS_KEY_ID")
 AWS_S3_SECRET_ACCESS_KEY = config("AWS_S3_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = "sportsclubmedia"
 AWS_QUERYSTRING_AUTH = True
+
+AWS_S3_REGION_NAME = "ap-south-1"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
