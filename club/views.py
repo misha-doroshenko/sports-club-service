@@ -230,10 +230,11 @@ def workout_delete(request, pk):
 @login_required
 def toggle_assign_to_workout(request, pk):
     trainer = Trainer.objects.get(id=request.user.id)
-    if (
-        Workout.objects.get(id=pk) in trainer.workouts.all()
-    ):
+    workout = Workout.objects.get(id=pk)
+    if workout in trainer.workouts.all():
         trainer.workouts.remove(pk)
     else:
         trainer.workouts.add(pk)
+    if not workout.trainer.all():
+        workout.delete()
     return HttpResponseRedirect(reverse_lazy("club:workout-list"))
