@@ -138,6 +138,7 @@ class TrainerCreateForm(UserCreationForm):
             "first_name",
             "last_name",
             "sports_club",
+            "sport",
             "experience",
             "username",
             "email",
