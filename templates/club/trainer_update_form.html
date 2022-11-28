@@ -13,11 +13,12 @@
               <div class="card card-plain">
             <form role="form" method="post" enctype="multipart/form-data" autocomplete="off">
               {% csrf_token %}
-              {% if form.experience.errors %}
-                <p>
-                  {{ form.experience.errors }}
-                </p>
-              {% endif %}
+              <p>
+                {{ form.experience.errors }}
+              </p>
+              <p>
+                {{ form.non_field_errors}}
+              </p>
               <div class="card-body pb-2">
                 <div class="row justify-content-center">
                   <div class="col-md-4">

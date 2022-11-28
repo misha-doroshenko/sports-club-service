@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "accounts",
+    "storages",
     "club",
 ]
 
@@ -153,3 +154,6 @@ AWS_S3_ACCESS_KEY_ID = config("AWS_S3_ACCESS_KEY_ID")
 AWS_S3_SECRET_ACCESS_KEY = config("AWS_S3_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = "sportsclubmedia"
 AWS_QUERYSTRING_AUTH = True
+
+AWS_S3_REGION_NAME = "eu-north-1"
+AWS_S3_SIGNATURE_VERSION = "s3v4"

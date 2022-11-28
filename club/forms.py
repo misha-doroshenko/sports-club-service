@@ -5,6 +5,12 @@ from django.core.exceptions import ValidationError
 from club.models import Sport, Trainer, SportsClub, Workout
 
 
+def check_swimming_trainer(sport_name: str, swimming_pool: bool):
+    if (sport_name == "Swimming"
+            and not swimming_pool):
+        raise ValidationError("You can't add a swimming trainer for a club without a swimming pool")
+
+
 class SportForm(forms.ModelForm):
     name = forms.CharField(
         widget=forms.TextInput(
@@ -119,12 +125,20 @@ class TrainerCreateForm(UserCreationForm):
             raise ValidationError("Experience must be a positive number")
         return self.cleaned_data["experience"]
 
+    def clean(self):
+        check_swimming_trainer(
+            self.cleaned_data["sport"].name,
+            self.cleaned_data["sports_club"].swimming_pool
+        )
+        return super(TrainerCreateForm, self).clean()
+
     class Meta:
         model = Trainer
         fields = (
             "first_name",
             "last_name",
             "sports_club",
+            "sport",
             "experience",
             "username",
             "email",
@@ -199,6 +213,13 @@ class TrainerUpdateForm(forms.ModelForm):
         if self.cleaned_data["experience"] < 0:
             raise ValidationError("Experience must be a positive number")
         return self.cleaned_data["experience"]
+
+    def clean(self):
+        check_swimming_trainer(
+            self.cleaned_data["sport"].name,
+            self.cleaned_data["sports_club"].swimming_pool
+        )
+        return super(TrainerUpdateForm, self).clean()
 
     class Meta:
         model = Trainer
@@ -308,9 +329,14 @@ class WorkoutForm(forms.ModelForm):
     def clean(self):
         if self.cleaned_data["ending_time"] <= self.cleaned_data["beginning_time"]:
             raise ValidationError("Beginning time must be earlier that ending time")
+        sports_clubs = set()
         for trainer in self.cleaned_data["trainer"]:
+            sports_clubs.add(trainer.sports_club)
             if trainer.sport != self.cleaned_data["sport"]:
                 raise ValidationError("The trainer's sport and workout's sport must be the same")
+        if len(sports_clubs) != 1:
+            raise ValidationError("The trainers from different clubs can't be assigned for 1 workout")
+
         return super(WorkoutForm, self).clean()
 
     class Meta:

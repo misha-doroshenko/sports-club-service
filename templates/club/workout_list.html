@@ -48,11 +48,13 @@
                       {{ workout.ending_time }}
                     </td>
                     <td class="text-center align-middle">
-                      {% if user.sport == workout.sport and workout not in user.workouts.all %}
+                      {% if user.sports_club.id != workout.trainer.first.sports_club.id %}
+                        Not your club
+                      {% elif user.sport == workout.sport and workout not in user.workouts.all %}
                         <a href="{% url 'club:toggle-workout-assign' pk=workout.id %}" class="btn btn-success link-to-page">
                           Assign me for this workout
                         </a>
-                      {% elif user.sport == workout.sport and workout in user.workouts.all%}
+                      {% elif user.sport == workout.sport and workout in user.workouts.all %}
                         <a href="{% url 'club:toggle-workout-assign' pk=workout.id %}" class="btn btn-danger link-to-page">
                           Delete me from this workout
                         </a>
