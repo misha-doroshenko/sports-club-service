@@ -4,7 +4,9 @@ Django project for managing sports clubs in the sport club network with trainers
 
 ## Check it out!
 [Sports Club project deployed to Render](https://sports-club-service.onrender.com/)
-
+test data:
+username: jack.brown
+password: edcujm37
 
 ## Instalation
 
