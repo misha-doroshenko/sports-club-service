@@ -79,7 +79,7 @@ class SportDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TrainerListView(LoginRequiredMixin, generic.ListView):
     model = Trainer
-    queryset = Trainer.objects.select_related("sport")
+    queryset = Trainer.objects.select_related("sport").order_by("id")
     paginate_by = 8
 
     def get_context_data(self, *, object_list=None, **kwargs):
